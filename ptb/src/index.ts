@@ -6,7 +6,7 @@ const main = async () => {
   console.log("This is the Sui network: ", ENV.SUI_NETWORK);
 
   try {
-    const result = // TODO: Call the mintNft function
+    const result = await mintNft();
 
     // Find the created NFT object
     const createdObjects = result.objectChanges?.filter(

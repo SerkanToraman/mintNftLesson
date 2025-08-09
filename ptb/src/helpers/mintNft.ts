@@ -3,7 +3,6 @@ import { Transaction } from "@mysten/sui/transactions";
 import { suiClient } from "../suiClient";
 import { getSigner } from "./getSigner";
 import { ENV } from "../env";
-import { getAddress } from "./getAddress";
 
 export const mintNft = async (): Promise<SuiTransactionBlockResponse> => {
   if (!ENV.USER_SECRET_KEY) {
@@ -12,12 +11,14 @@ export const mintNft = async (): Promise<SuiTransactionBlockResponse> => {
 
   const tx = new Transaction();
 
-
-  
   tx.moveCall({
-    target: // TODO: Add the target mint function,
+    target: `${ENV.PACKAGE_ID}::mintnft::mint`,
     arguments: [
-      // TODO: Add the arguments for the mint function
+      tx.object(ENV.MINTADDRESSES_ID),
+      tx.pure.string("ptbTest"),
+      tx.pure.string(
+        "https://walrus.tusky.io/RyXOC1zp1YDcA7hzSDwFf6ES9tH7529OPZ5NvpgXqno"
+      ),
     ],
   });
 
