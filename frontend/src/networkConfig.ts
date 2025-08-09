@@ -13,8 +13,10 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
     testnet: {
       url: getFullnodeUrl("testnet"),
       variables: {
-        packageId: // TODO: Add the package id
-        mintAddresses: // TODO: Add the mint addresses
+        packageId:
+          "0x988506337558544bc2f05a97bb2b054b41971572a9d0bc354ab45586337d2cb7",
+        mintAddresses:
+          "0xf021cb621ce0d2766cfb5333f72b4a5c76726cc44c1664a40b2daedadfb75024",
       },
     },
     mainnet: {

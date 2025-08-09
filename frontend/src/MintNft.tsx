@@ -28,38 +28,38 @@ function MintNft({
   } = useSignAndExecuteTransaction();
 
   const handleMintNft = (nft: Nft) => {
-    const tx = // TODO: Add the transaction for the mint function
-      signAndExecuteTransaction(
-        {
-          transaction: tx,
+    const tx = mintNft(nft, packageId, mintAddresses);
+    signAndExecuteTransaction(
+      {
+        transaction: tx,
+      },
+      {
+        onSuccess: async ({ digest }) => {
+          setName("");
+          setUrl("");
+          setRefreshKey(refreshKey + 1);
+          const { effects } = await suiClient.waitForTransaction({
+            digest,
+            options: {
+              showEffects: true,
+              showObjectChanges: true,
+            },
+          });
+          const eventResult = await suiClient.queryEvents({
+            query: {
+              Transaction: digest,
+            },
+          });
+          if (eventResult.data.length > 0) {
+            console.log("event", eventResult.data);
+            console.log("effects", effects);
+          }
         },
-        {
-          onSuccess: async ({ digest }) => {
-            setName("");
-            setUrl("");
-            setRefreshKey(refreshKey + 1);
-            const { effects } = await suiClient.waitForTransaction({
-              digest,
-              options: {
-                showEffects: true,
-                showObjectChanges: true,
-              },
-            });
-            const eventResult = await suiClient.queryEvents({
-              query: {
-                Transaction: digest,
-              },
-            });
-            if (eventResult.data.length > 0) {
-              console.log("event", eventResult.data);
-              console.log("effects", effects);
-            }
-          },
-          onError: (error: any) => {
-            console.error("Transaction failed", error);
-          },
+        onError: (error: any) => {
+          console.error("Transaction failed", error);
         },
-      );
+      },
+    );
   };
 
   return (

@@ -8,9 +8,11 @@ interface Nft {
 export const mintNft = (nft: Nft, packageId: string, mintAddresses: string) => {
   const tx = new Transaction();
   tx.moveCall({
-    target: // TODO: Add the target mint function,
+    target: `${packageId}::mintnft::mint`,
     arguments: [
-      // TODO: Add the arguments for the mint function
+      tx.object(mintAddresses),
+      tx.pure.string(nft.name),
+      tx.pure.string(nft.url),
     ],
   });
   return tx;

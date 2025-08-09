@@ -37,7 +37,7 @@ function DisplayNft({ refreshKey }: { refreshKey: number }) {
         showContent: true,
       },
       filter: {
-        StructType: // TODO: Add the struct type for the NFT
+        StructType: `${packageId}::mintnft::Nft`,
       },
     },
     {
@@ -45,6 +45,8 @@ function DisplayNft({ refreshKey }: { refreshKey: number }) {
       refetchInterval: refreshKey,
     },
   );
+  console.log("data", data);
+
   if (isPending) {
     return <div>Loading...</div>;
   }
