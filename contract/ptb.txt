@@ -1,0 +1,9 @@
+sui client ptb \
+    --move-call 0x988506337558544bc2f05a97bb2b054b41971572a9d0bc354ab45586337d2cb7::mintnft::mint \
+    @0xf021cb621ce0d2766cfb5333f72b4a5c76726cc44c1664a40b2daedadfb75024 \
+    '"Test"' '"https://walrus.tusky.io/RyXOC1zp1YDcA7hzSDwFf6ES9tH7529OPZ5NvpgXqno"'
+
+sui client ptb \
+    --move-call 0x988506337558544bc2f05a97bb2b054b41971572a9d0bc354ab45586337d2cb7::mintnft::update_nft \
+    @0x5979ae9ddc9d3ff832e453c5a6021f36ef967b72e9ab320b00123c2bcfebe771 \
+    '"Test2525"'
